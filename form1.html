@@ -63,11 +63,22 @@
                                 </div>
 
                                 <div class="checkbox">
-                                  <label><input type="checkbox" id="faille3" value="" name="faille1">Injection SQL: Exemple 1 du cours</label>
+                                  <label><input type="checkbox" id="faille6" value="" name="faille6">Injection SQL: Union </label>
                                 </div>
 
                                 <div class="checkbox">
-                                  <label><input type="checkbox" id="faille4" value="" name="faille1">Injection SQL: Exemple 1 du cours</label>
+                                  <label><input type="checkbox" id="faille7" value="" name="faille7">Injection SQL: Requête UPDATE</label>
+                                </div>
+                                
+                                <div class="checkbox">
+                                  <label><input type="checkbox" id="faille3" value="" name="faille3">Faille XSS</label>
+                                </div>
+
+                                <div class="checkbox">
+                                  <label><input type="checkbox" id="faille4" value="" name="faille4">Faille CSRF</label>
+                                </div>
+                                <div class="checkbox">
+                                  <label><input type="checkbox" id="faille5" value="" name="faille5">Brute force</label>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +102,7 @@
                                 <label class="sr-only" for="form-password">Mot de passe</label>
                                 <input type="text" name="form-password" placeholder="Mot de passe..." class="form-password form-control" id="form-password">
                             </div>
-                            <button type="submit" class="btn">Se connecter</button>
+                            <button type="submit" class="btn" id="connexion">Se connecter</button>
                         
                     </div>
                     <br>
@@ -117,18 +128,64 @@
 
     <script type="text/javascript">
     var faille1 = document.getElementById("faille1");
+    var faille2 = document.getElementById("faille2");
     var username = document.getElementById("form-username");
     var password = document.getElementById("form-password");
 
     faille1.addEventListener( 'change', function() {
         if(this.checked) {
             username.value="admin";
-            password.value="blabla' OR 1='1'";
+            password.value="blabla' OR 1='1";
         } else {
             username.value="";
             password.value="";
         }
     });
+
+    faille2.addEventListener( 'change', function() {
+        if(this.checked) {
+            username.value="admin' -- ";
+            password.value="pass";
+        } else {
+            username.value="";
+            password.value="";
+        }
+    });
+
+    faille3.addEventListener( 'change', function() {
+        if(this.checked) {
+            username.value="<script>alert('Faille XSS détectée')<\/script>";
+            password.value="pass";
+        } else {
+            username.value="";
+            password.value="";
+        }
+    });
+
+    faille4.addEventListener( 'change', function() {
+        alert('Voici le lien pour supprimer l\'utilisateur de votre choix: http://localhost/Securite/supprimerUser.php?user=userChoisi');
+    });
+
+    faille6.addEventListener( 'change', function() {
+        if(this.checked) {
+            username.value="blabla 'UNION SELECT * from users # ";
+            password.value="pass";
+        } else {
+            username.value="";
+            password.value="";
+        }
+    });
+
+    faille7.addEventListener( 'change', function() {
+        if(this.checked) {
+            username.value="blabla';UPDATE users SET pass=md5(\"moiadmin\") WHERE login=\"admin\";--";
+            password.value="pass";
+        } else {
+            username.value="";
+            password.value="";
+        }
+    });
+   
     </script>
 
         <!--[if lt IE 10]>

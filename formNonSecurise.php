@@ -1,5 +1,7 @@
 <?php
     session_start();
+    
+    //header('X-XSS-Protection:0');// Pour déseactiver la protection XSS sur le navigateur
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,11 +54,12 @@
 
                                             $login = $_POST['form-username'];
 
-                                            // 
-                                            if(isset($_POST['faille1']))
+                                            // Si on veut tester l'injection SQL
+                                            if(isset($_POST['faille1']) || isset($_POST['faille2']) || isset($_POST['faille6']) || isset($_POST['faille7']))
                                             {
+                                                // On ne convertit pas le mdp en md5
                                                 $password = $_POST['form-password'];
-                                                echo "pass ".$password;
+                                                //echo 'SELECT * FROM users WHERE login=\''.$login.'\' AND pass=\''.$password.'\'';
                                             }
                                             else
                                             {
@@ -65,7 +68,7 @@
                                             
                                                 
 
-                                            $connection = $db->prepare('SELECT * FROM users WHERE login="'.$login.'" AND pass="'.$password.'" ');
+                                            $connection = $db->prepare('SELECT * FROM users WHERE login=\''.$login.'\' AND pass=\''.$password.'\'');
                                             $connection->execute();
 
                                             $result = $connection->fetch(PDO::FETCH_OBJ);

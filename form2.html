@@ -1,99 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Sécurisation des applications</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sécurisation des applications</title>
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/form-elements.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+            <![endif]-->
 
-        <!-- Favicon and touch icons -->
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+            <!-- Favicon and touch icons -->
+            <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
 
-    </head>
+        </head>
 
-    <body>
+        <body>
 
-        <!-- Top content -->
-        <div class="top-content">
-            
-            <div class="inner-bg">
-                <div class="container">
-                    <div class="row" style="margin-top:-80px;">
-                        <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1>Sécurisation des applications</h1>
-                            <div class="description">
-                                <p>
-                                    Ce formulaire est sécurisé
-                                </p>
+            <!-- Top content -->
+            <div class="top-content">
+                <form role="form" action="formSecurise.php" method="post" class="login-form">
+                <div class="inner-bg">
+                    <div class="container" >
+                        <div class="row" style="margin-top:-80px;">
+                            <div class="col-sm-8 col-sm-offset-2 text" style="">
+                                <h1>Sécurisation des applications</h1>
+                                <div class="description">
+                                   <p>
+                                      Ce formulaire est sécurisé
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                      <div class="col-sm-6  form-box" >
+                            <div class="form-top" style="background:#2da742;">
+                                <div class="form-top-left">
+                                    <h3>Quelle faille voulez-vous exploiter ?</h3>
+                                </div>
+
+                                <div class="checkbox">
+                                  <label><input type="checkbox" id="faille1" value="" name="faille1">Injection SQL: Exemple 1 du cours</label>
+                                </div>
+
+                                <div class="checkbox">
+                                  <label><input type="checkbox" id="faille2" value="" name="faille2">Injection SQL: Exemple 2 du cours</label>
+                                </div>
+
+                                <div class="checkbox">
+                                  <label><input type="checkbox" id="faille6" value="" name="faille6">Injection SQL: Union </label>
+                                </div>
+
+                                <div class="checkbox">
+                                  <label><input type="checkbox" id="faille7" value="" name="faille7">Injection SQL: Requête UPDATE</label>
+                                </div>
+                                
+                                <div class="checkbox">
+                                  <label><input type="checkbox" id="faille3" value="" name="faille3">Faille XSS</label>
+                                </div>
+
+                                <div class="checkbox">
+                                  <label><input type="checkbox" id="faille4" value="" name="faille4">Faille CSRF</label>
+                                </div>
+                                <div class="checkbox">
+                                  <label><input type="checkbox" id="faille5" value="" name="faille5">Brute force</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3 form-box">
-                            <div class="form-top" style="background:#6ca54f;">
+                        <div class="col-sm-6 form-box">
+                            <div class="form-top" style="background:#2da742;">
                                 <div class="form-top-left">
                                     <h3>Connectez-vous à notre application</h3>
-                                    <p>Entrez votre login et mot de passe:</p>
-                                </div>
-                                <div class="form-top-right">
-                                    <i class="fa fa-lock"></i>
-                                </div>
+                                  <p>Entrez votre login et mot de passe:</p>
+                              </div>
+                              <div class="form-top-right">
+                                 <i class="fa fa-lock"></i>
+                             </div>
+                         </div>
+                         <div class="form-bottom" style="background:#2da742;">
+                             
+                                <div class="form-group">
+                                   <label class="sr-only" for="form-username">Login</label>
+                                   <input type="text" name="form-username" placeholder="Login..." class="form-username form-control" id="form-username">
+                               </div>
+                               <div class="form-group">
+                                <label class="sr-only" for="form-password">Mot de passe</label>
+                                <input type="text" name="form-password" placeholder="Mot de passe..." class="form-password form-control" id="form-password">
                             </div>
-                            <div class="form-bottom" style="background:#6ca54f;">
-                                <form role="form" action="formSecurise.php" method="post" class="login-form">
-                                    <div class="form-group">
-                                        <label class="sr-only" for="form-username">Login</label>
-                                        <input type="text" name="form-username" placeholder="Login..." class="form-username form-control" id="form-username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="form-password">Mot de passe</label>
-                                        <input type="password" name="form-password" placeholder="Mot de passe..." class="form-password form-control" id="form-password">
-                                    </div>
-                                    <button type="submit" class="btn">Se connecter</button>
-                                </form>
-                            </div>
-                            <br>
 
-                            <a href="form2.html" class="btn btn-success" role="button">Passer au formulaire sécurisé</a>
-                            <a href="form1.html" class="btn btn-danger" role="button" style="margin-left:100px">Passer au formulaire non sécurisé</a>
-                        </div>
-
-
+                            <div class="g-recaptcha" data-sitekey="6Ldi7TAUAAAAAH-3By2L7trg01DauyNujGXRFGsM"></div>
+                            <button type="submit" class="btn" id="connexion">Se connecter</button>
+                        
                     </div>
+                    <br>
+
+                    <a href="form2.html" class="btn btn-success" role="button">Passer au formulaire sécurisé</a>
+                    <a href="form1.html" class="btn btn-danger" role="button" style="margin-left:100px">Passer au formulaire non sécurisé</a>
+                </div>
+
+
             </div>
-            
         </div>
 
+        </form>
 
-        <!-- Javascript -->
-        <script src="assets/js/jquery-1.11.1.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.backstretch.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
-        
+    </div>
+
+
+    <!-- Javascript -->
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.backstretch.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+
+    <script type="text/javascript">
+    var faille1 = document.getElementById("faille1");
+    var faille2 = document.getElementById("faille2");
+    var username = document.getElementById("form-username");
+    var password = document.getElementById("form-password");
+
+    faille1.addEventListener( 'change', function() {
+        if(this.checked) {
+            username.value="admin";
+            password.value="blabla' OR 1='1";
+        } else {
+            username.value="";
+            password.value="";
+        }
+    });
+
+    faille2.addEventListener( 'change', function() {
+        if(this.checked) {
+            username.value="admin' -- ";
+            password.value="pass";
+        } else {
+            username.value="";
+            password.value="";
+        }
+    });
+
+    faille3.addEventListener( 'change', function() {
+        if(this.checked) {
+            username.value="<script>alert('Faille XSS détectée')<\/script>";
+            password.value="pass";
+        } else {
+            username.value="";
+            password.value="";
+        }
+    });
+
+    faille4.addEventListener( 'change', function() {
+        alert('Voici le lien pour supprimer l\'utilisateur de votre choix: http://localhost/Securite/supprimerUserProtege.php?user=userChoisi');
+    });
+
+    faille6.addEventListener( 'change', function() {
+        if(this.checked) {
+            username.value="blabla 'UNION SELECT * from users # ";
+            password.value="pass";
+        } else {
+            username.value="";
+            password.value="";
+        }
+    });
+
+    faille7.addEventListener( 'change', function() {
+        if(this.checked) {
+            username.value="blabla';UPDATE users SET pass=md5(\"moiadmin\") WHERE login=\"admin\";--";
+            password.value="pass";
+        } else {
+            username.value="";
+            password.value="";
+        }
+    });
+   
+    </script>
+
         <!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
-        <![endif]-->
+            <![endif]-->
 
-    </body>
+        </body>
 
-</html>
+        </html>
